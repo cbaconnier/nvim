@@ -43,6 +43,16 @@ local servers = {
     }
   },
   -- laravel_dev_tools = { },
+  nixd = { 
+    settings = { 
+      nixd = { 
+        formatting = { 
+          command = "nixpkgs-fmt"
+        }
+      }
+    }
+  },
+
 }
 
 for name, opts in pairs(servers) do
