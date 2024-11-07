@@ -15,9 +15,13 @@ local lspconfig = require("lspconfig")
 
 
 local servers = {
-  html = {},
+  html = {
+    filetypes = { "html", "blade"},
+  },
   cssls = {},
-  tailwindcss = {},
+  tailwindcss = {
+    filetypes = { "html", "blade"},
+  },
   intelephense = {
     filetypes = { "php", "blade" },
     settings = {

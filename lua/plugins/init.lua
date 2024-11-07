@@ -1,11 +1,30 @@
 return {
   {
     "stevearc/conform.nvim",
-    -- event = 'BufWritePre', -- uncomment for format on save
+    event = 'BufWritePre', -- format on save
     opts = require "configs.conform",
   },
 
-  -- These are some examples, uncomment them if you want to see them work!
+  {
+    'numToStr/Comment.nvim',
+    opts = {
+      pre_hook = function(ctx)
+        -- "blade" comments keep to be html. This force what I defined.
+        return vim.bo.commentstring
+      end,
+      mappings = {
+        basic = true,
+        extra = true,
+        extended = {
+          above = 'gcO',
+          below = 'gco',
+          eol = 'gcA',
+        },
+      },
+    },
+    lazy = false,
+  },
+
   {
     "neovim/nvim-lspconfig",
     config = function()
@@ -21,10 +40,10 @@ return {
     opts = {
       dependencies = {
         {
-          "windwp/nvim-ts-autotag",
-          config = function()
-            require("nvim-ts-autotag").setup()
-          end,
+          'windwp/nvim-ts-autotag',
+          'RRethy/nvim-treesitter-endwise',
+          'nvim-treesitter/nvim-treesitter-textobjects',
+          'nvim-treesitter/nvim-treesitter-context',
         },
       },
       ensure_installed = {
@@ -46,8 +65,38 @@ return {
         "vimdoc",
       },
 
-      autotag = {
+      highlight = { enable = true },
+      indent = { enable = true },
+      -- incremental_selection = {
+      --   enable = true,
+      --   keymaps = { -- set to `false` to disable one of the mappings
+      --     init_selection = 'gnn',
+      --     node_incremental = 'grn',
+      --     scope_incremental = 'grc',
+      --     node_decremental = 'grm',
+      --   },
+      -- },
+      autotag = { -- 'windwp/nvim-ts-autotag'
+        enable = false, -- this breaks dot repeating with `>`
+      },
+      endwise = { -- 'RRethy/nvim-treesitter-endwise',
         enable = true,
+      },
+      textobjects = { -- 'nvim-treesitter/nvim-treesitter-textobjects',
+        select = {
+          enable = true,
+          lookahead = true,
+          keymaps = {
+            ['if'] = '@function.inner',
+            ['af'] = '@function.outer',
+            ['ic'] = '@class.inner',
+            ['ac'] = '@class.outer',
+            ['il'] = '@loop.inner',
+            ['al'] = '@loop.outer',
+            ['ia'] = '@parameter.inner',
+            ['aa'] = '@parameter.outer',
+          },
+        },
       },
     },
 
@@ -61,12 +110,6 @@ return {
           branch = "main",
         },
         filetype = "blade",
-      }
-
-      vim.filetype.add {
-        pattern = {
-          [".*%.blade%.php"] = "blade",
-        },
       }
 
       require("nvim-treesitter.configs").setup(opts)
@@ -93,6 +136,16 @@ return {
     -- },
   --   config = true,
   -- },
+  -- {
+  --   "hrsh7th/nvim-cmp",
+  --   opts = function(_, opts)
+  --     opts.sources = vim.list_extend(opts.sources or {}, {
+  --       { name = "laravel" },
+  --     })
+  --   end,
+  -- },
+
+
   {
     'phpactor/phpactor',
     build = 'composer install --no-dev --optimize-autoloader',
@@ -114,4 +167,35 @@ return {
     },
   },
 
+  {
+    'kristijanhusak/vim-dadbod-ui',
+    dependencies = {
+      { 'tpope/vim-dadbod', lazy = true },
+      { 'kristijanhusak/vim-dadbod-completion', ft = { 'sql', 'mysql', 'plsql' }, lazy = true },
+    },
+    cmd = {
+      'DBUI',
+      'DBUIToggle',
+      'DBUIAddConnection',
+      'DBUIFindBuffer',
+    },
+    init = function()
+      vim.g.db_ui_use_nerd_fonts = 1
+    end,
+  },
+
+
+  {
+    "hrsh7th/nvim-cmp",
+    dependencies = {
+      "kristijanhusak/vim-dadbod-completion",
+      "hrsh7th/cmp-emoji",
+    },
+    opts = function(_, opts)
+      opts.sources = vim.list_extend(opts.sources or {}, {
+        { name = "vim-dadbod-completion" },
+        { name = "emoji" },
+      })
+    end,
+  },
 }
