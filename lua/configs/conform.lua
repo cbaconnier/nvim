@@ -1,6 +1,6 @@
 local options = {
   formatters_by_ft = {
-    lua = { "stylua" }, 
+    lua = { "stylua" },
     blade = { "blade-formatter" },
     php = { "pint", "php_cs_fixer" },
     -- css = { "prettier" },
@@ -12,16 +12,15 @@ local options = {
     lsp_fallback = true,
   },
 
-
   formatters = {
     ["blade-formatter"] = {
-      prepend_args = { 
+      prepend_args = {
         "--write",
-        "--config", ".prettierrc.json",
+        "--config",
+        ".prettierrc.json",
       },
     },
   },
-
 }
 
 return options

@@ -1,12 +1,12 @@
 return {
   {
     "stevearc/conform.nvim",
-    event = 'BufWritePre', -- format on save
+    event = "BufWritePre", -- format on save
     opts = require "configs.conform",
   },
 
   {
-    'numToStr/Comment.nvim',
+    "numToStr/Comment.nvim",
     opts = {
       pre_hook = function(ctx)
         -- "blade" comments keep to be html. This force what I defined.
@@ -16,9 +16,9 @@ return {
         basic = true,
         extra = true,
         extended = {
-          above = 'gcO',
-          below = 'gco',
-          eol = 'gcA',
+          above = "gcO",
+          below = "gco",
+          eol = "gcA",
         },
       },
     },
@@ -40,10 +40,9 @@ return {
     opts = {
       dependencies = {
         {
-          'windwp/nvim-ts-autotag',
-          'RRethy/nvim-treesitter-endwise',
-          'nvim-treesitter/nvim-treesitter-textobjects',
-          'nvim-treesitter/nvim-treesitter-context',
+          "windwp/nvim-ts-autotag",
+          "RRethy/nvim-treesitter-endwise",
+          "nvim-treesitter/nvim-treesitter-textobjects",
         },
       },
       ensure_installed = {
@@ -87,20 +86,20 @@ return {
           enable = true,
           lookahead = true,
           keymaps = {
-            ['if'] = '@function.inner',
-            ['af'] = '@function.outer',
-            ['ic'] = '@class.inner',
-            ['ac'] = '@class.outer',
-            ['il'] = '@loop.inner',
-            ['al'] = '@loop.outer',
-            ['ia'] = '@parameter.inner',
-            ['aa'] = '@parameter.outer',
+            ["if"] = "@function.inner",
+            ["af"] = "@function.outer",
+            ["ic"] = "@class.inner",
+            ["ac"] = "@class.outer",
+            ["il"] = "@loop.inner",
+            ["al"] = "@loop.outer",
+            ["ia"] = "@parameter.inner",
+            ["aa"] = "@parameter.outer",
           },
         },
       },
     },
 
-    config = function(_, opts)
+    config = function(plugin, opts)
       local parser_config = require("nvim-treesitter.parsers").get_parser_configs()
 
       parser_config.blade = {
@@ -111,6 +110,22 @@ return {
         },
         filetype = "blade",
       }
+
+      vim.filetype.add {
+        pattern = {
+          [".*%.blade%.php"] = "blade",
+        },
+      }
+
+      local bladeGrp
+      vim.api.nvim_create_augroup("BladeFiltypeRelated", { clear = true })
+      vim.api.nvim_create_autocmd({ "BufNewFile", "BufRead" }, {
+        pattern = "*.blade.php",
+        group = bladeGrp,
+        callback = function()
+          vim.opt.filetype = "blade"
+        end,
+      })
 
       require("nvim-treesitter.configs").setup(opts)
     end,
@@ -130,10 +145,10 @@ return {
   --     { "<leader>rr", ":Laravel routes<cr>" },
   --   },
   --   event = { "VeryLazy" },
-    -- opts = {
-    --   lsp_server = "intelephense",
-    --   features = { null_ls = { enable = false } },
-    -- },
+  -- opts = {
+  --   lsp_server = "intelephense",
+  --   features = { null_ls = { enable = false } },
+  -- },
   --   config = true,
   -- },
   -- {
@@ -145,15 +160,14 @@ return {
   --   end,
   -- },
 
-
   {
-    'phpactor/phpactor',
-    build = 'composer install --no-dev --optimize-autoloader',
-    ft = 'php',
+    "phpactor/phpactor",
+    build = "composer install --no-dev --optimize-autoloader",
+    ft = "php",
     keys = {
-      { '<Leader>pm', ':PhpactorContextMenu<CR>' },
-      { '<Leader>pn', ':PhpactorClassNew<CR>' },
-    }
+      { "<Leader>pm", ":PhpactorContextMenu<CR>" },
+      { "<Leader>pn", ":PhpactorClassNew<CR>" },
+    },
   },
 
   {
@@ -163,27 +177,26 @@ return {
     },
     ft = { "blade", "php" },
     opts = {
-        close_tag_on_complete = false, 
+      close_tag_on_complete = false,
     },
   },
 
   {
-    'kristijanhusak/vim-dadbod-ui',
+    "kristijanhusak/vim-dadbod-ui",
     dependencies = {
-      { 'tpope/vim-dadbod', lazy = true },
-      { 'kristijanhusak/vim-dadbod-completion', ft = { 'sql', 'mysql', 'plsql' }, lazy = true },
+      { "tpope/vim-dadbod", lazy = true },
+      { "kristijanhusak/vim-dadbod-completion", ft = { "sql", "mysql", "plsql" }, lazy = true },
     },
     cmd = {
-      'DBUI',
-      'DBUIToggle',
-      'DBUIAddConnection',
-      'DBUIFindBuffer',
+      "DBUI",
+      "DBUIToggle",
+      "DBUIAddConnection",
+      "DBUIFindBuffer",
     },
     init = function()
       vim.g.db_ui_use_nerd_fonts = 1
     end,
   },
-
 
   {
     "hrsh7th/nvim-cmp",

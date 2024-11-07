@@ -11,12 +11,6 @@ end
 
 vim.opt.rtp:prepend(lazypath)
 
-vim.filetype.add({
-  pattern = {
-    [".*%.blade%.php"] = "blade",
-  },
-})
-
 local lazy_config = require "configs.lazy"
 
 -- load plugins

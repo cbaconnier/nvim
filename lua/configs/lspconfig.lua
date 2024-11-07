@@ -1,6 +1,6 @@
 -- load defaults i.e lua_lsp
-local configs = require("nvchad.configs.lspconfig")
-local lspconfig = require("lspconfig")
+local configs = require "nvchad.configs.lspconfig"
+local lspconfig = require "lspconfig"
 
 -- require("lspconfig.configs").laravel_dev_tools = {
 --   default_config = {
@@ -13,14 +13,13 @@ local lspconfig = require("lspconfig")
 --   },
 -- }
 
-
 local servers = {
   html = {
-    filetypes = { "html", "blade"},
+    filetypes = { "html", "blade" },
   },
   cssls = {},
   tailwindcss = {
-    filetypes = { "html", "blade"},
+    filetypes = { "html", "blade" },
   },
   intelephense = {
     filetypes = { "php", "blade" },
@@ -28,10 +27,10 @@ local servers = {
       intelephense = {
         files = {
           associations = { "*.php", "*.blade.php" },
-          maxSize = 5000000;
-        };
-      }
-    }
+          maxSize = 5000000,
+        },
+      },
+    },
   },
   phpactor = {
     filetypes = { "php", "blade" },
@@ -44,19 +43,18 @@ local servers = {
       ["language_server.diagnostics_on_save"] = false,
       ["language_server_phpstan.enabled"] = false,
       ["language_server_psalm.enabled"] = false,
-    }
+    },
   },
   -- laravel_dev_tools = { },
-  nixd = { 
-    settings = { 
-      nixd = { 
-        formatting = { 
-          command = "nixpkgs-fmt"
-        }
-      }
-    }
+  nixd = {
+    settings = {
+      nixd = {
+        formatting = {
+          command = "nixpkgs-fmt",
+        },
+      },
+    },
   },
-
 }
 
 for name, opts in pairs(servers) do
