@@ -4,7 +4,16 @@
 (attribute
   (attribute_name) @_attr
   (#lua-match? @_attr "^x%-%l")
-  (#not-any-of? @_attr "x-teleport" "x-ref" "x-transition")
+  (#not-any-of? @_attr 
+    "x-ref"
+    "x-teleport"
+    "x-transition"
+    "x-transition:enter"
+    "x-transition:enter-start"
+    "x-transition:enter-end"
+    "x-transition:leave"
+    "x-transition:leave-start"
+    "x-transition:leave-end")
   (quoted_attribute_value
     (attribute_value) @injection.content)
   (#set! injection.language "javascript"))
