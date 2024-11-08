@@ -117,16 +117,6 @@ return {
         },
       }
 
-      local bladeGrp
-      vim.api.nvim_create_augroup("BladeFiltypeRelated", { clear = true })
-      vim.api.nvim_create_autocmd({ "BufNewFile", "BufRead" }, {
-        pattern = "*.blade.php",
-        group = bladeGrp,
-        callback = function()
-          vim.opt.filetype = "blade"
-        end,
-      })
-
       require("nvim-treesitter.configs").setup(opts)
     end,
   },
