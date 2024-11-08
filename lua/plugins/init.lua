@@ -58,6 +58,7 @@ return {
         "php",
         "php_only",
         "phpdoc",
+        "sql",
         "tsx",
         "typescript",
         "vim",
