@@ -1,9 +1,7 @@
-**This repo is supposed to used as config by NvChad users!**
+# Neovim - NvChad Configuration
 
-- The main nvchad repo (NvChad/NvChad) is used as a plugin by this repo.
-- So you just import its modules , like `require "nvchad.options" , require "nvchad.mappings"`
-- So you can delete the .git from this repo ( when you clone it locally ) or fork it :)
+This repository contains my Neovim configuration I mostly use for Laravel development, built on top of [NvChad](https://nvchad.com).
 
-# Credits
+## Prerequisites
 
-1) Lazyvim starter https://github.com/LazyVim/starter as nvchad's starter was inspired by Lazyvim's . It made a lot of things easier!
+[See my nixos - nvim configuration](https://github.com/cbaconnier/nixos-config/blob/main/home-manager/nvim/default.nix)
