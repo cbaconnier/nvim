@@ -14,11 +14,8 @@ local lspconfig = require "lspconfig"
 -- }
 
 local servers = {
-  html = {
-    filetypes = { "html", "blade" },
-  },
   cssls = {},
-  tailwindcss = {
+  html = {
     filetypes = { "html", "blade" },
   },
   intelephense = {
@@ -27,6 +24,16 @@ local servers = {
       licenceKey = "~/.config/intelephense/licence.txt",
     },
     filetypes = { "php", "blade" },
+  },
+  -- laravel_dev_tools = { },
+  nixd = {
+    settings = {
+      nixd = {
+        formatting = {
+          command = "nixpkgs-fmt",
+        },
+      },
+    },
   },
   phpactor = {
     filetypes = { "php", "blade" },
@@ -41,16 +48,10 @@ local servers = {
       ["language_server_psalm.enabled"] = false,
     },
   },
-  -- laravel_dev_tools = { },
-  nixd = {
-    settings = {
-      nixd = {
-        formatting = {
-          command = "nixpkgs-fmt",
-        },
-      },
-    },
+  tailwindcss = {
+    filetypes = { "html", "blade" },
   },
+  ts_ls = {},
 }
 
 for name, opts in pairs(servers) do
