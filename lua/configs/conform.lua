@@ -3,7 +3,10 @@ local options = {
     lua = { "stylua" },
     blade = { "blade-formatter" },
     php = { "pint", "php_cs_fixer" },
-    -- css = { "prettier" },
+    javascript = { "prettier" },
+    typescript = { "prettier" },
+    typescriptreact = { "prettier" },
+    css = { "prettier" },
     -- html = { "prettier" },
   },
 
