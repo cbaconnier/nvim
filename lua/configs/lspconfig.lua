@@ -22,15 +22,11 @@ local servers = {
     filetypes = { "html", "blade" },
   },
   intelephense = {
-    filetypes = { "php", "blade" },
-    settings = {
-      intelephense = {
-        files = {
-          associations = { "*.php", "*.blade.php" },
-          maxSize = 5000000,
-        },
-      },
+    init_options = {
+      globalStoragePath = os.getenv "HOME" .. "/.local/share/intelephense",
+      licenceKey = "~/.config/intelephense/licence.txt",
     },
+    filetypes = { "php", "blade" },
   },
   phpactor = {
     filetypes = { "php", "blade" },
