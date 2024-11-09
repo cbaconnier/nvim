@@ -6,6 +6,33 @@ return {
   },
 
   {
+    {
+      "f-person/auto-dark-mode.nvim",
+      event = "VeryLazy",
+      config = function()
+        local config = require "nvconfig"
+        require("auto-dark-mode").setup {
+          update_interval = 1000,
+          set_dark_mode = function()
+            if config.base46.theme ~= "chadtain" then
+              config.base46.theme = "chadtain"
+              require("base46").load_all_highlights()
+            end
+          end,
+          set_light_mode = function()
+            if config.base46.theme ~= "one_light" then
+              config.base46.theme = "one_light"
+              require("base46").load_all_highlights()
+            end
+          end,
+        }
+
+        require("auto-dark-mode").init()
+      end,
+    },
+  },
+
+  {
     "numToStr/Comment.nvim",
     opts = {
       pre_hook = function(ctx)
