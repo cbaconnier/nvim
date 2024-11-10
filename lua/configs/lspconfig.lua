@@ -48,6 +48,7 @@ local servers = {
       ["language_server_psalm.enabled"] = false,
     },
   },
+  rust_analyzer = {},
   tailwindcss = {
     filetypes = { "html", "blade" },
   },

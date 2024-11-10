@@ -85,6 +85,7 @@ return {
         "php",
         "php_only",
         "phpdoc",
+        "rust",
         "sql",
         "tsx",
         "typescript",
