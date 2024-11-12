@@ -1,7 +1,7 @@
 local options = {
   formatters_by_ft = {
     lua = { "stylua" },
-    blade = { "blade-formatter" },
+    blade = { "blade-formatter", "prettier" },
     php = { "pint", "php_cs_fixer" },
     javascript = { "prettier" },
     typescript = { "prettier" },
