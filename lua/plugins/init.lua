@@ -44,19 +44,19 @@ return {
   },
 
   {
-    'numToStr/Comment.nvim',
-    event = 'VeryLazy',
-    dependencies = { 'nvim-treesitter' },
+    "numToStr/Comment.nvim",
+    event = "VeryLazy",
+    dependencies = { "nvim-treesitter" },
     config = function()
-      require('Comment').setup({
+      require("Comment").setup {
         pre_hook = function(ctx)
-        -- ts_context_commentstring don't want to use blade comments for some reason
-        if vim.bo.filetype == 'blade' then
-          return vim.bo.commentstring
-        end
+          -- ts_context_commentstring don't want to use blade comments for some reason
+          if vim.bo.filetype == "blade" then
+            return vim.bo.commentstring
+          end
 
-        return require('ts_context_commentstring.integrations.comment_nvim').create_pre_hook()(ctx)
-      end,
+          return require("ts_context_commentstring.integrations.comment_nvim").create_pre_hook()(ctx)
+        end,
         mappings = {
           basic = true,
           extra = true,
@@ -66,7 +66,7 @@ return {
             eol = "gcA",
           },
         },
-      })
+      }
     end,
   },
 
@@ -163,7 +163,7 @@ return {
             ["aa"] = "@parameter.outer",
           },
         },
-      }
+      },
     },
 
     config = function(plugin, opts)
@@ -269,7 +269,7 @@ return {
     end,
   },
 
-  -- -- image.nvim has slightly better performances with imagemagick through luarocks, but needs to be installed. 
+  -- -- image.nvim has slightly better performances with imagemagick through luarocks, but needs to be installed.
   -- -- For nix, we need `luajitPackages.magick`
   -- -- For arch, we need `sudo pacman -Syu imagemagick`
   -- -- For tmux, we need v>= 3.3 and configuration  `set -gq allow-passthrough on`, `set -g visual-activity off`
@@ -290,12 +290,12 @@ return {
     -- lazy = false,
     -- dependencies = { "luarocks.nvim" },
     config = function()
-      require("image").setup({
+      require("image").setup {
         backend = "kitty",
         processor = "magick_rock",
         max_height_window_percentage = 50,
         hijack_file_patterns = { "*.png", "*.jpg", "*.jpeg", "*.gif", "*.webp", "*.svg" },
-      })
-    end
-  }
+      }
+    end,
+  },
 }

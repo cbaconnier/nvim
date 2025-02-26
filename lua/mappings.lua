@@ -15,9 +15,9 @@ map("n", "<leader>i", vim.show_pos)
 --
 
 -- Open buffer and use <c-d> to close them
-local builtin = require('telescope.builtin')
-local action_state = require('telescope.actions.state')
-vim.keymap.set('n', '<C-e>', function()
+local builtin = require "telescope.builtin"
+local action_state = require "telescope.actions.state"
+vim.keymap.set("n", "<C-e>", function()
   builtin.buffers({
     initial_mode = "normal",
     attach_mappings = function(prompt_bufnr, map)
@@ -28,13 +28,13 @@ vim.keymap.set('n', '<C-e>', function()
         end)
       end
 
-      map('n', '<c-d>', delete_buf)
+      map("n", "<c-d>", delete_buf)
 
       return true
-    end
+    end,
   }, {
     sort_lastused = true,
     sort_mru = true,
-    theme = "dropdown"
+    theme = "dropdown",
   })
 end)
