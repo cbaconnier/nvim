@@ -16,7 +16,7 @@ local lspconfig = require "lspconfig"
 local servers = {
   cssls = {},
   html = {
-    filetypes = { "html", "blade" },
+    filetypes = { "html", "blade", "typescriptreact" },
   },
   intelephense = {
     init_options = {
@@ -50,7 +50,7 @@ local servers = {
   },
   rust_analyzer = {},
   tailwindcss = {
-    filetypes = { "html", "blade" },
+    filetypes = { "html", "blade", "typescriptreact" },
   },
   ts_ls = {},
 }
