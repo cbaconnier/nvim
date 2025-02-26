@@ -33,24 +33,62 @@ return {
   },
 
   {
-    "numToStr/Comment.nvim",
-    opts = {
-      pre_hook = function(ctx)
-        -- "blade" comments keep to be html. This force what I defined.
-        return vim.bo.commentstring
-      end,
-      mappings = {
-        basic = true,
-        extra = true,
-        extended = {
-          above = "gcO",
-          below = "gco",
-          eol = "gcA",
-        },
-      },
-    },
-    lazy = false,
+    "JoosepAlviste/nvim-ts-context-commentstring",
+    -- config = function()
+    --   require('ts_context_commentstring').setup {
+    --     languages = {
+    --       blade = { __default = "{{-- %s --}}" }
+    --     },
+    --   }
+    -- end
   },
+
+  {
+    'numToStr/Comment.nvim',
+    event = 'VeryLazy',
+    dependencies = { 'nvim-treesitter' },
+    config = function()
+      require('Comment').setup({
+        pre_hook = function(ctx)
+        -- ts_context_commentstring don't want to use blade comments for some reason
+        if vim.bo.filetype == 'blade' then
+          return vim.bo.commentstring
+        end
+
+        return require('ts_context_commentstring.integrations.comment_nvim').create_pre_hook()(ctx)
+      end,
+        mappings = {
+          basic = true,
+          extra = true,
+          extended = {
+            above = "gcO",
+            below = "gco",
+            eol = "gcA",
+          },
+        },
+      })
+    end,
+  },
+
+  -- {
+  --   "numToStr/Comment.nvim",
+  --   opts = {
+  --     pre_hook = function(ctx)
+  --       -- "blade" comments keep to be html. This force what I defined.
+  --       return vim.bo.commentstring
+  --     end,
+  --     mappings = {
+  --       basic = true,
+  --       extra = true,
+  --       extended = {
+  --         above = "gcO",
+  --         below = "gco",
+  --         eol = "gcA",
+  --       },
+  --     },
+  --   },
+  --   lazy = false,
+  -- },
 
   {
     "neovim/nvim-lspconfig",
@@ -125,7 +163,7 @@ return {
             ["aa"] = "@parameter.outer",
           },
         },
-      },
+      }
     },
 
     config = function(plugin, opts)
