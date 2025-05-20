@@ -8,7 +8,6 @@ return {
   {
     {
       "f-person/auto-dark-mode.nvim",
-      event = "VeryLazy",
       config = function()
         local config = require "nvconfig"
         require("auto-dark-mode").setup {
