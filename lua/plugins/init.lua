@@ -7,6 +7,7 @@ return {
     dependencies = {
       "kristijanhusak/vim-dadbod-completion",
       "moyiz/blink-emoji.nvim",
+      "ricardoramirezr/blade-nav.nvim",
     },
     opts = {
       sources = {
@@ -18,11 +19,19 @@ return {
           "php_declarations",
           "dadbod",
           "emoji",
+          "blade-nav",
         },
         providers = {
           php_declarations = { module = "custom.blink-php", score_offset = 100 },
           dadbod = { module = "vim_dadbod_completion.blink" },
           emoji = { module = "blink-emoji", score_offset = -1 },
+          ["blade-nav"] = {
+            module = "blade-nav.blink",
+            ft = { "blade", "php" },
+            opts = {
+              close_tag_on_complete = false,
+            },
+          },
         },
       },
     },
@@ -191,17 +200,6 @@ return {
   },
 
   {
-    "ricardoramirezr/blade-nav.nvim",
-    dependencies = {
-      "saghen/blink.cmp",
-    },
-    ft = { "blade", "php" },
-    opts = {
-      close_tag_on_complete = false,
-    },
-  },
-
-  {
     "kristijanhusak/vim-dadbod-ui",
     dependencies = {
       { "tpope/vim-dadbod", lazy = true },
@@ -234,7 +232,7 @@ return {
     "3rd/image.nvim",
     event = {
       -- Load only when opening one of these file occur instead of using `lazy = false`
-      "BufReadPost *.png,*.jpg,*.jpeg,*.gif,*.webp,*.svg",
+      "BufReadPost *.png,*.jpg,*.jpeg,*.gif,*.webp",
     },
     -- lazy = false,
     -- dependencies = { "luarocks.nvim" },
