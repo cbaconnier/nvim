@@ -15,10 +15,12 @@ return {
           "path",
           "snippets",
           "buffer",
+          "php_declarations",
           "dadbod",
           "emoji",
         },
         providers = {
+          php_declarations = { module = "custom.blink-php", score_offset = 100 },
           dadbod = { module = "vim_dadbod_completion.blink" },
           emoji = { module = "blink-emoji", score_offset = -1 },
         },
