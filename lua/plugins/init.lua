@@ -62,13 +62,6 @@ return {
 
   {
     "JoosepAlviste/nvim-ts-context-commentstring",
-    -- config = function()
-    --   require('ts_context_commentstring').setup {
-    --     languages = {
-    --       blade = { __default = "{{-- %s --}}" }
-    --     },
-    --   }
-    -- end
   },
 
   {
@@ -97,26 +90,6 @@ return {
       }
     end,
   },
-
-  -- {
-  --   "numToStr/Comment.nvim",
-  --   opts = {
-  --     pre_hook = function(ctx)
-  --       -- "blade" comments keep to be html. This force what I defined.
-  --       return vim.bo.commentstring
-  --     end,
-  --     mappings = {
-  --       basic = true,
-  --       extra = true,
-  --       extended = {
-  --         above = "gcO",
-  --         below = "gco",
-  --         eol = "gcA",
-  --       },
-  --     },
-  --   },
-  --   lazy = false,
-  -- },
 
   {
     "neovim/nvim-lspconfig",
@@ -161,15 +134,6 @@ return {
 
       highlight = { enable = true },
       indent = { enable = true },
-      -- incremental_selection = {
-      --   enable = true,
-      --   keymaps = { -- set to `false` to disable one of the mappings
-      --     init_selection = 'gnn',
-      --     node_incremental = 'grn',
-      --     scope_incremental = 'grc',
-      --     node_decremental = 'grm',
-      --   },
-      -- },
       autotag = { -- 'windwp/nvim-ts-autotag'
         enable = false, -- this breaks dot repeating with `>`
       },
@@ -216,35 +180,6 @@ return {
     end,
   },
 
-  -- {
-  --   "adalessa/laravel.nvim",
-  --   dependencies = {
-  --     "nvim-telescope/telescope.nvim",
-  --     "tpope/vim-dotenv",
-  --     "MunifTanjim/nui.nvim",
-  --     -- "nvimtools/none-ls.nvim",
-  --     "kevinhwang91/promise-async",
-  --   },
-  --   cmd = { "Sail", "Artisan", "Composer", "Npm", "Laravel" },
-  --   keys = {
-  --     { "<leader>rr", ":Laravel routes<cr>" },
-  --   },
-  --   event = { "VeryLazy" },
-  -- opts = {
-  --   lsp_server = "intelephense",
-  --   features = { null_ls = { enable = false } },
-  -- },
-  --   config = true,
-  -- },
-  -- {
-  --   "hrsh7th/nvim-cmp",
-  --   opts = function(_, opts)
-  --     opts.sources = vim.list_extend(opts.sources or {}, {
-  --       { name = "laravel" },
-  --     })
-  --   end,
-  -- },
-
   {
     "phpactor/phpactor",
     build = "composer install --no-dev --optimize-autoloader",
@@ -282,20 +217,6 @@ return {
       vim.g.db_ui_use_nerd_fonts = 1
     end,
   },
-
-  -- {
-  --   "hrsh7th/nvim-cmp",
-  --   dependencies = {
-  --     "kristijanhusak/vim-dadbod-completion",
-  --     "hrsh7th/cmp-emoji",
-  --   },
-  --   opts = function(_, opts)
-  --     opts.sources = vim.list_extend(opts.sources or {}, {
-  --       { name = "vim-dadbod-completion" },
-  --       { name = "emoji" },
-  --     })
-  --   end,
-  -- },
 
   -- -- image.nvim has slightly better performances with imagemagick through luarocks, but needs to be installed.
   -- -- For nix, we need `luajitPackages.magick`
