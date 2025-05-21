@@ -14,6 +14,12 @@ map("n", "<leader>i", vim.show_pos)
 -- map({ "n", "i", "v" }, "<C-s>", "<cmd> w <cr>")
 --
 
+-- Copilot keymap
+vim.api.nvim_set_keymap("i", "<C-a>", "<Plug>(copilot-suggest)", { silent = true })
+vim.api.nvim_set_keymap("i", "<C-x>", "<Plug>(copilot-dismiss)", { silent = true })
+vim.api.nvim_set_keymap("i", "<C-é>", "<Plug>(copilot-previous)", { silent = true })
+vim.api.nvim_set_keymap("i", "<C-à>", "<Plug>(copilot-next)", { silent = true })
+
 -- Open buffer and use <c-d> to close them
 local builtin = require "telescope.builtin"
 local action_state = require "telescope.actions.state"
