@@ -27,7 +27,6 @@ return {
           emoji = { module = "blink-emoji", score_offset = -1 },
           ["blade-nav"] = {
             module = "blade-nav.blink",
-            ft = { "blade", "php" },
             opts = {
               close_tag_on_complete = false,
             },
