@@ -3,6 +3,30 @@ return {
   { import = "nvchad.blink.lazyspec" },
 
   {
+    "saghen/blink.cmp",
+    dependencies = {
+      "kristijanhusak/vim-dadbod-completion",
+      "moyiz/blink-emoji.nvim",
+    },
+    opts = {
+      sources = {
+        default = {
+          "lsp",
+          "path",
+          "snippets",
+          "buffer",
+          "dadbod",
+          "emoji",
+        },
+        providers = {
+          dadbod = { module = "vim_dadbod_completion.blink" },
+          emoji = { module = "blink-emoji", score_offset = -1 },
+        },
+      },
+    },
+  },
+
+  {
     "stevearc/conform.nvim",
     event = "BufWritePre", -- format on save
     opts = require "configs.conform",
@@ -232,7 +256,7 @@ return {
   {
     "ricardoramirezr/blade-nav.nvim",
     dependencies = {
-      "hrsh7th/nvim-cmp",
+      "saghen/blink.cmp",
     },
     ft = { "blade", "php" },
     opts = {
@@ -257,19 +281,19 @@ return {
     end,
   },
 
-  {
-    "hrsh7th/nvim-cmp",
-    dependencies = {
-      "kristijanhusak/vim-dadbod-completion",
-      "hrsh7th/cmp-emoji",
-    },
-    opts = function(_, opts)
-      opts.sources = vim.list_extend(opts.sources or {}, {
-        { name = "vim-dadbod-completion" },
-        { name = "emoji" },
-      })
-    end,
-  },
+  -- {
+  --   "hrsh7th/nvim-cmp",
+  --   dependencies = {
+  --     "kristijanhusak/vim-dadbod-completion",
+  --     "hrsh7th/cmp-emoji",
+  --   },
+  --   opts = function(_, opts)
+  --     opts.sources = vim.list_extend(opts.sources or {}, {
+  --       { name = "vim-dadbod-completion" },
+  --       { name = "emoji" },
+  --     })
+  --   end,
+  -- },
 
   -- -- image.nvim has slightly better performances with imagemagick through luarocks, but needs to be installed.
   -- -- For nix, we need `luajitPackages.magick`
