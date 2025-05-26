@@ -125,6 +125,15 @@ return {
     end,
   },
 
+  {
+    "nvim-tree/nvim-tree.lua",
+    opts = {
+      renderer = {
+        full_name = true,
+      },
+    },
+  },
+
   -- https://github.com/siduck/dotfiles/blob/master/nvchad/lua/plugins/init.lua
   -- https://github.com/V13Axel/nvim-config/tree/master
 
