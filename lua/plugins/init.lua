@@ -168,6 +168,10 @@ return {
         "vimdoc",
       },
 
+      matchup = {
+        enable = true,
+      },
+
       highlight = { enable = true },
       indent = { enable = true },
       autotag = { -- 'windwp/nvim-ts-autotag'
@@ -270,6 +274,14 @@ return {
         max_height_window_percentage = 50,
         hijack_file_patterns = { "*.png", "*.jpg", "*.jpeg", "*.gif", "*.webp", "*.svg" },
       }
+    end,
+  },
+
+  {
+    "andymass/vim-matchup",
+    event = { "BufReadPost" },
+    config = function()
+      vim.g.matchup_matchparen_offscreen = { method = "popup" }
     end,
   },
 }
