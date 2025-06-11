@@ -53,7 +53,31 @@ return {
     },
   },
 
-  { "github/copilot.vim", lazy = false },
+  -- { "github/copilot.vim", lazy = false},
+  {
+    "zbirenbaum/copilot.lua",
+    lazy = false,
+    opts = {
+      panel = { enabled = false },
+      suggestion = {
+        enabled = true,
+        auto_trigger = false,
+        hide_during_completion = true,
+        debounce = 75,
+        trigger_on_accept = true,
+        keymap = {
+          accept = "<M-l>",
+          next = "<M-k>",
+          prev = "<M-j>",
+          dismiss = "<C-h>",
+        },
+      },
+      telemetry = {
+        telemetryLevel = "off",
+      },
+    },
+  },
+  -- { "giuxtaposition/blink-cmp-copilot" },
 
   {
     "stevearc/conform.nvim",
@@ -283,5 +307,11 @@ return {
     config = function()
       vim.g.matchup_matchparen_offscreen = { method = "popup" }
     end,
+  },
+
+  {
+    "machakann/vim-sandwich",
+    lazy = false,
+    config = function() end,
   },
 }
