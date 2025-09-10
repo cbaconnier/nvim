@@ -20,6 +20,23 @@ vim.api.nvim_set_keymap("i", "<C-x>", "<Plug>(copilot-dismiss)", { silent = true
 vim.api.nvim_set_keymap("i", "<C-é>", "<Plug>(copilot-previous)", { silent = true })
 vim.api.nvim_set_keymap("i", "<C-à>", "<Plug>(copilot-next)", { silent = true })
 
+-- neotest keymap
+vim.keymap.set("n", "<leader>tt", function()
+  require("neotest").run.run()
+end, { desc = "Run nearest test" })
+
+vim.keymap.set("n", "<leader>tf", function()
+  require("neotest").run.run(vim.fn.expand "%")
+end, { desc = "Run file tests" })
+
+vim.keymap.set("n", "<leader>to", function()
+  require("neotest").output.open { enter = true }
+end, { desc = "Open test output" })
+
+vim.keymap.set("n", "<leader>ts", function()
+  require("neotest").summary.toggle()
+end, { desc = "Toggle test summary" })
+
 -- Open buffer and use <c-d> to close them
 local builtin = require "telescope.builtin"
 local action_state = require "telescope.actions.state"
