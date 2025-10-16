@@ -7,6 +7,9 @@ local map = vim.keymap.set
 map("n", ";", ":", { desc = "CMD enter command mode" })
 map("i", "jk", "<ESC>")
 
+map("n", "<S-p>", '"0p', { desc = "Paste from yank register" })
+map("v", "<S-p>", '"0p', { desc = "Paste from yank register" })
+
 -- inspect treesitter
 map("n", "<leader>it", vim.treesitter.inspect_tree)
 map("n", "<leader>i", vim.show_pos)
