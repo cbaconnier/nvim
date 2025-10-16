@@ -23,6 +23,11 @@ vim.api.nvim_set_keymap("i", "<C-x>", "<Plug>(copilot-dismiss)", { silent = true
 vim.api.nvim_set_keymap("i", "<C-é>", "<Plug>(copilot-previous)", { silent = true })
 vim.api.nvim_set_keymap("i", "<C-à>", "<Plug>(copilot-next)", { silent = true })
 
+-- Telescope live grep args
+vim.keymap.set("n", "<leader>fg", function()
+  require("telescope").extensions.live_grep_args.live_grep_args()
+end, { desc = "Live grep with args" })
+
 -- neotest keymap
 vim.keymap.set("n", "<leader>tt", function()
   require("neotest").run.run()

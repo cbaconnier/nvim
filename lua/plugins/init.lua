@@ -245,6 +245,14 @@ return {
   },
 
   {
+    "nvim-telescope/telescope-live-grep-args.nvim",
+    dependencies = { "nvim-telescope/telescope.nvim" },
+    config = function()
+      require("telescope").load_extension "live_grep_args"
+    end,
+  },
+
+  {
     "phpactor/phpactor",
     build = "composer install --no-dev --optimize-autoloader",
     ft = "php",
