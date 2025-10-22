@@ -55,9 +55,28 @@ local servers = {
   ts_ls = {},
 }
 
-for name, opts in pairs(servers) do
-  opts.on_init = configs.on_init
-  opts.on_attach = configs.on_attach
-  opts.capabilities = configs.capabilities
-  vim.lsp.config(name, opts)
+-- for name, opts in pairs(servers) do
+--   opts.on_init = configs.on_init
+--   opts.on_attach = configs.on_attach
+--   opts.capabilities = configs.capabilities
+--   vim.lsp.enable(name, opts)
+-- end
+
+vim.api.nvim_create_autocmd("LspAttach", {
+  callback = function(args)
+    local client = vim.lsp.get_client_by_id(args.data.client_id)
+    if client and configs.on_attach then
+      configs.on_attach(client, args.buf)
+    end
+  end,
+})
+
+-- Set global capabilities
+vim.lsp.config("*", {
+  capabilities = configs.capabilities,
+})
+
+-- Enable all servers
+for name, _ in pairs(servers) do
+  vim.lsp.enable(name)
 end
