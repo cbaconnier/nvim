@@ -58,7 +58,17 @@ return {
     "zbirenbaum/copilot.lua",
     lazy = false,
     opts = {
-      panel = { enabled = false },
+      panel = {
+        enabled = true,
+        auto_refresh = true,
+        keymap = {
+          jump_prev = "<M-k>",
+          jump_next = "<M-j>",
+          accept = "<M-l>",
+          refresh = "gr",
+          open = "<M-CR>",
+        },
+      },
       suggestion = {
         enabled = true,
         auto_trigger = false,
