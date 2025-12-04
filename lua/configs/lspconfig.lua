@@ -2,17 +2,6 @@
 local configs = require "nvchad.configs.lspconfig"
 local lspconfig = require "lspconfig"
 
--- require("lspconfig.configs").laravel_dev_tools = {
---   default_config = {
---     cmd = { "/home/clement/.local/share/laravel-dev-tools/builds/laravel-dev-tools", "lsp"},
---     filetypes = { "blade", "php" },
---     root_dir = function(fname)
---       return lspconfig.util.find_git_ancestor(fname)
---     end;
---     settings = {},
---   },
--- }
-
 local servers = {
   cssls = {},
   html = {
@@ -21,11 +10,10 @@ local servers = {
   intelephense = {
     init_options = {
       globalStoragePath = os.getenv "HOME" .. "/.local/share/intelephense",
-      licenceKey = "~/.config/intelephense/licence.txt",
+      licenceKey = os.getenv "HOME" .. "/.config/intelephense/licence.txt",
     },
     filetypes = { "php", "blade" },
   },
-  -- laravel_dev_tools = { },
   nixd = {
     settings = {
       nixd = {
@@ -37,9 +25,6 @@ local servers = {
   },
   phpactor = {
     filetypes = { "php", "blade" },
-    root_dir = function(fname)
-      return lspconfig.util.find_git_ancestor(fname)
-    end,
     init_options = {
       ["language_server.diagnostics_on_update"] = false,
       ["language_server.diagnostics_on_open"] = false,
@@ -55,13 +40,6 @@ local servers = {
   ts_ls = {},
 }
 
--- for name, opts in pairs(servers) do
---   opts.on_init = configs.on_init
---   opts.on_attach = configs.on_attach
---   opts.capabilities = configs.capabilities
---   vim.lsp.enable(name, opts)
--- end
-
 vim.api.nvim_create_autocmd("LspAttach", {
   callback = function(args)
     local client = vim.lsp.get_client_by_id(args.data.client_id)
@@ -76,7 +54,7 @@ vim.lsp.config("*", {
   capabilities = configs.capabilities,
 })
 
--- Enable all servers
-for name, _ in pairs(servers) do
+for name, opts in pairs(servers) do
+  vim.lsp.config(name, opts)
   vim.lsp.enable(name)
 end
