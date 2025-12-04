@@ -46,6 +46,14 @@ vim.api.nvim_create_autocmd("LspAttach", {
     if client and configs.on_attach then
       configs.on_attach(client, args.buf)
     end
+
+    -- Disable code actions for Intelephense in favor of phpactor
+    if client and client.name == "intelephense" then
+      client.server_capabilities.codeActionProvider = false
+      client.server_capabilities.hoverProvider = false
+      client.server_capabilities.signatureHelpProvider = false
+      client.server_capabilities.definitionProvider = false
+    end
   end,
 })
 
