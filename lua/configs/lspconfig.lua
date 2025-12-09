@@ -23,16 +23,6 @@ local servers = {
       },
     },
   },
-  phpactor = {
-    filetypes = { "php", "blade" },
-    init_options = {
-      ["language_server.diagnostics_on_update"] = false,
-      ["language_server.diagnostics_on_open"] = false,
-      ["language_server.diagnostics_on_save"] = false,
-      ["language_server_phpstan.enabled"] = false,
-      ["language_server_psalm.enabled"] = false,
-    },
-  },
   rust_analyzer = {},
   tailwindcss = {
     filetypes = { "html", "blade", "typescriptreact" },
@@ -45,14 +35,6 @@ vim.api.nvim_create_autocmd("LspAttach", {
     local client = vim.lsp.get_client_by_id(args.data.client_id)
     if client and configs.on_attach then
       configs.on_attach(client, args.buf)
-    end
-
-    -- Disable code actions for Intelephense in favor of phpactor
-    if client and client.name == "intelephense" then
-      client.server_capabilities.codeActionProvider = false
-      client.server_capabilities.hoverProvider = false
-      client.server_capabilities.signatureHelpProvider = false
-      client.server_capabilities.definitionProvider = false
     end
   end,
 })
