@@ -48,3 +48,12 @@ for name, opts in pairs(servers) do
   vim.lsp.config(name, opts)
   vim.lsp.enable(name)
 end
+
+-- refresh the LSP diagnostic loclist on save (when open)
+vim.api.nvim_create_autocmd("BufWritePost", {
+  callback = function()
+    if vim.fn.getloclist(0, { winid = 0 }).winid ~= 0 then
+      vim.diagnostic.setloclist { open = false }
+    end
+  end,
+})
