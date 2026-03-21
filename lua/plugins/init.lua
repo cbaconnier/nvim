@@ -307,18 +307,13 @@ return {
   --
   {
     "3rd/image.nvim",
-    event = {
-      -- Load only when opening one of these file occur instead of using `lazy = false`
-      "BufReadPost *.png,*.jpg,*.jpeg,*.gif,*.webp",
-    },
     -- lazy = false,
-    -- dependencies = { "luarocks.nvim" },
     config = function()
       require("image").setup {
         backend = "kitty",
-        processor = "magick_rock",
+        processor = "magick_cli",
         max_height_window_percentage = 50,
-        hijack_file_patterns = { "*.png", "*.jpg", "*.jpeg", "*.gif", "*.webp" },
+        hijack_file_patterns = { "*.png", "*.jpg", "*.jpeg", "*.gif", "*.webp", "*.svg" },
       }
     end,
   },

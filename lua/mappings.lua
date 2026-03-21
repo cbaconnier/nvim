@@ -45,6 +45,20 @@ vim.keymap.set("n", "<leader>ts", function()
   require("neotest").summary.toggle()
 end, { desc = "Toggle test summary" })
 
+-- Toggle image preview keymap
+vim.keymap.set("n", "<leader>ip", function()
+  local image = require "image"
+  if image.is_enabled() then
+    image.disable()
+    vim.cmd "edit" -- reload buffer to trigger rendering
+    vim.bo.modifiable = true
+    vim.bo.buftype = ""
+  else
+    image.enable()
+    vim.cmd "edit"
+  end
+end, { desc = "Toggle image preview" })
+
 -- Open buffer and use <c-d> to close them
 local builtin = require "telescope.builtin"
 local action_state = require "telescope.actions.state"
