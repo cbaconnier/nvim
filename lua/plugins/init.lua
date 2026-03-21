@@ -82,6 +82,9 @@ return {
           dismiss = "<C-h>",
         },
       },
+      filetypes = {
+        markdown = true, -- overrides default(disallow)
+      },
       telemetry = {
         telemetryLevel = "off",
       },
