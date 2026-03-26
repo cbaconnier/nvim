@@ -188,6 +188,7 @@ return {
         "bash",
         "blade",
         "css",
+        "dockerfile",
         "html",
         "javascript",
         "json",
@@ -293,21 +294,9 @@ return {
     end,
   },
 
-  -- -- image.nvim has slightly better performances with imagemagick through luarocks, but needs to be installed.
-  -- -- For nix, we need `luajitPackages.magick`
-  -- -- For arch, we need `sudo pacman -Syu imagemagick`
-  -- -- For tmux, we need v>= 3.3 and configuration  `set -gq allow-passthrough on`, `set -g visual-activity off`
-  -- {
-  --   "vhyrro/luarocks.nvim",
-  --   priority = 1001, -- this plugin needs to run before anything else
-  --   opts = {
-  --     rocks = { "magick" },
-  --   },
-  -- },
-  --
   {
     "3rd/image.nvim",
-    -- lazy = false,
+    build = false,
     config = function()
       require("image").setup {
         backend = "kitty",
