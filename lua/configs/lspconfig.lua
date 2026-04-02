@@ -7,12 +7,17 @@ local servers = {
   html = {
     filetypes = { "html", "blade", "typescriptreact" },
   },
-  intelephense = {
-    init_options = {
-      globalStoragePath = os.getenv "HOME" .. "/.local/share/intelephense",
-      licenceKey = os.getenv "HOME" .. "/.config/intelephense/licence.txt",
-    },
+  -- intelephense = {
+  --   init_options = {
+  --     globalStoragePath = os.getenv "HOME" .. "/.local/share/intelephense",
+  --     licenceKey = os.getenv "HOME" .. "/.config/intelephense/licence.txt",
+  --   },
+  --   filetypes = { "php", "blade" },
+  -- },
+  phpantom_lsp = {
+    cmd = { "phpantom_lsp" },
     filetypes = { "php", "blade" },
+    root_markers = { "composer.json", ".git" },
   },
   nixd = {
     settings = {
