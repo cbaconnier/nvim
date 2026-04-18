@@ -170,6 +170,7 @@ return {
     },
   },
 
+  { "nvim-treesitter/nvim-treesitter", enabled = false },
   {
     "romus204/tree-sitter-manager.nvim",
     lazy = false,
