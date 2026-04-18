@@ -131,7 +131,6 @@ return {
   {
     "numToStr/Comment.nvim",
     event = "VeryLazy",
-    dependencies = { "nvim-treesitter" },
     config = function()
       require("Comment").setup {
         pre_hook = function(ctx)
@@ -171,81 +170,34 @@ return {
     },
   },
 
-  -- https://github.com/siduck/dotfiles/blob/master/nvchad/lua/plugins/init.lua
-  -- https://github.com/V13Axel/nvim-config/tree/master
-
   {
-    "nvim-treesitter/nvim-treesitter",
-    opts = {
-      dependencies = {
-        {
-          "windwp/nvim-ts-autotag",
-          "RRethy/nvim-treesitter-endwise",
-          "nvim-treesitter/nvim-treesitter-textobjects",
+    "romus204/tree-sitter-manager.nvim",
+    lazy = false,
+    config = function()
+      require("tree-sitter-manager").setup {
+        ensure_installed = {
+          "bash",
+          "blade",
+          "css",
+          "dockerfile",
+          "html",
+          "javascript",
+          "json",
+          "lua",
+          "markdown",
+          "nix",
+          "php",
+          "php_only",
+          "phpdoc",
+          "rust",
+          "sql",
+          "tsx",
+          "typescript",
+          "vim",
+          "vimdoc",
         },
-      },
-      ensure_installed = {
-        "bash",
-        "blade",
-        "css",
-        "dockerfile",
-        "html",
-        "javascript",
-        "json",
-        "lua",
-        "markdown",
-        "nix",
-        "php",
-        "php_only",
-        "phpdoc",
-        "rust",
-        "sql",
-        "tsx",
-        "typescript",
-        "vim",
-        "vimdoc",
-      },
-
-      matchup = {
-        enable = true,
-      },
-
-      highlight = { enable = true },
-      indent = { enable = true },
-      autotag = { -- 'windwp/nvim-ts-autotag'
-        enable = false, -- this breaks dot repeating with `>`
-      },
-      endwise = { -- 'RRethy/nvim-treesitter-endwise',
-        enable = true,
-      },
-      textobjects = { -- 'nvim-treesitter/nvim-treesitter-textobjects',
-        select = {
-          enable = true,
-          lookahead = true,
-          keymaps = {
-            ["if"] = "@function.inner",
-            ["af"] = "@function.outer",
-            ["ic"] = "@class.inner",
-            ["ac"] = "@class.outer",
-            ["il"] = "@loop.inner",
-            ["al"] = "@loop.outer",
-            ["ia"] = "@parameter.inner",
-            ["aa"] = "@parameter.outer",
-          },
-        },
-      },
-    },
-
-    config = function(plugin, opts)
-      local parser_config = require("nvim-treesitter.parsers").get_parser_configs()
-
-      parser_config.blade = {
-        install_info = {
-          url = "https://github.com/EmranMR/tree-sitter-blade",
-          files = { "src/parser.c" },
-          branch = "main",
-        },
-        filetype = "blade",
+        auto_install = false,
+        highlight = true,
       }
 
       vim.filetype.add {
@@ -254,9 +206,20 @@ return {
           ["%.env%.*"] = "sh",
         },
       }
-
-      require("nvim-treesitter.configs").setup(opts)
     end,
+  },
+
+  {
+    "windwp/nvim-ts-autotag",
+    config = function()
+      require("nvim-ts-autotag").setup {
+        opts = { enable_close_on_slash = false },
+      }
+    end,
+  },
+
+  {
+    "RRethy/nvim-treesitter-endwise",
   },
 
   {
@@ -327,8 +290,6 @@ return {
       "nvim-neotest/nvim-nio",
       "nvim-lua/plenary.nvim",
       "antoinemadec/FixCursorHold.nvim",
-      "nvim-treesitter/nvim-treesitter",
-      --
       "V13Axel/neotest-pest",
     },
     config = function()
