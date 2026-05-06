@@ -59,6 +59,22 @@ vim.keymap.set("n", "<leader>ip", function()
   end
 end, { desc = "Toggle image preview" })
 
+-- Remove default new buffer keymap
+vim.keymap.del("n", "<leader>b")
+
+-- Buffer keymaps
+map("n", "<leader>bn", "<cmd>enew<CR>", { desc = "New buffer" })
+
+map("n", "<leader>bo", function()
+  local current = vim.api.nvim_get_current_buf()
+
+  for _, buf in ipairs(vim.api.nvim_list_bufs()) do
+    if buf ~= current and vim.api.nvim_buf_is_loaded(buf) and not vim.bo[buf].modified then
+      vim.api.nvim_buf_delete(buf, { force = false })
+    end
+  end
+end, { desc = "Close all buffers except current" })
+
 -- Open buffer and use <c-d> to close them
 local builtin = require "telescope.builtin"
 local action_state = require "telescope.actions.state"
