@@ -98,35 +98,6 @@ return {
     opts = require "configs.conform",
   },
 
-  -- {
-  --   {
-  --     "f-person/auto-dark-mode.nvim",
-  --     config = function()
-  --       local config = require "nvconfig"
-  --       local current_theme = nil
-  --       require("auto-dark-mode").setup {
-  --         update_interval = 1000,
-  --         set_dark_mode = function()
-  --           if current_theme ~= "chadtain" then
-  --             current_theme = "chadtain"
-  --             config.base46.theme = "chadtain"
-  --             require("base46").load_all_highlights()
-  --           end
-  --         end,
-  --         set_light_mode = function()
-  --           if current_theme ~= "one_light" then
-  --             current_theme = "one_light"
-  --             config.base46.theme = "one_light"
-  --             require("base46").load_all_highlights()
-  --           end
-  --         end,
-  --       }
-  --
-  --       require("auto-dark-mode").init()
-  --     end,
-  --   },
-  -- },
-
   {
     "JoosepAlviste/nvim-ts-context-commentstring",
   },
