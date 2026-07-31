@@ -233,16 +233,23 @@ return {
   },
 
   {
-    "3rd/image.nvim",
-    build = false,
-    config = function()
-      require("image").setup {
-        backend = "kitty",
-        processor = "magick_cli",
-        max_height_window_percentage = 50,
-        hijack_file_patterns = { "*.png", "*.jpg", "*.jpeg", "*.gif", "*.webp", "*.svg" },
-      }
-    end,
+    "folke/snacks.nvim",
+    lazy = false,
+    priority = 1000,
+    opts = {
+      image = {
+        enabled = true,
+        doc = {
+          inline = true,
+        },
+        resolve = function(path, src)
+          local ok, api = pcall(require, "obsidian.api")
+          if ok and api.path_is_note(path) then
+            return api.resolve_attachment_path(src)
+          end
+        end,
+      },
+    },
   },
 
   {

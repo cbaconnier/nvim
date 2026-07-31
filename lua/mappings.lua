@@ -45,19 +45,22 @@ vim.keymap.set("n", "<leader>ts", function()
   require("neotest").summary.toggle()
 end, { desc = "Toggle test summary" })
 
--- Toggle image preview keymap
-vim.keymap.set("n", "<leader>ip", function()
-  local image = require "image"
-  if image.is_enabled() then
-    image.disable()
-    vim.cmd "edit" -- reload buffer to trigger rendering
-    vim.bo.modifiable = true
-    vim.bo.buftype = ""
-  else
-    image.enable()
-    vim.cmd "edit"
-  end
-end, { desc = "Toggle image preview" })
+-- Obsidian keymaps
+vim.keymap.set("n", "<leader>of", "<cmd>Obsidian quick_switch<cr>", { desc = "Obsidian find note" })
+vim.keymap.set("n", "<leader>os", "<cmd>Obsidian search<cr>", { desc = "Obsidian search" })
+vim.keymap.set("n", "<leader>od", "<cmd>Obsidian today<cr>", { desc = "Obsidian today's note" })
+vim.keymap.set("n", "<leader>oD", function()
+  vim.ui.input({ prompt = "Date (YYYY-MM-DD): " }, function(input)
+    if input and input ~= "" then
+      vim.cmd("Obsidian today " .. input)
+    end
+  end)
+end, { desc = "Obsidian note for date" })
+vim.keymap.set("n", "<leader>on", "<cmd>Obsidian new<cr>", { desc = "Obsidian new note" })
+vim.keymap.set("n", "<leader>ot", "<cmd>Obsidian template<cr>", { desc = "Obsidian insert template" })
+vim.keymap.set("n", "<leader>oe", function()
+  require("nvim-tree.api").tree.open { path = vim.fn.expand "~/Documents/obsidian" }
+end, { desc = "Obsidian file explorer" })
 
 -- Remove default new buffer keymap
 vim.keymap.del("n", "<leader>b")
