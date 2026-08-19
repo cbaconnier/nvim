@@ -37,5 +37,11 @@ return {
     checkbox = {
       order = { " ", "x" },
     },
+
+    ui = {
+      -- render-markdown.nvim owns all visual rendering
+      -- see obsidian-nvim/obsidian.nvim#487
+      enable = false,
+    },
   },
 }

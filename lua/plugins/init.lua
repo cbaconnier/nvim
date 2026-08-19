@@ -3,6 +3,11 @@ return {
   { import = "nvchad.blink.lazyspec" },
 
   {
+    "chrisbra/Recover.vim",
+    event = "SwapExists",
+  },
+
+  {
     "saghen/blink.cmp",
     dependencies = {
       "kristijanhusak/vim-dadbod-completion",
