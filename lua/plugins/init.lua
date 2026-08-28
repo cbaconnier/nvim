@@ -158,6 +158,7 @@ return {
         ensure_installed = {
           "bash",
           "blade",
+          "caddy",
           "css",
           "dockerfile",
           "html",
@@ -181,9 +182,13 @@ return {
       }
 
       vim.filetype.add {
+        filename = {
+          Caddyfile = "caddy",
+        },
         pattern = {
           [".*%.blade%.php"] = "blade",
           ["%.env%.*"] = "sh",
+          [".*%.caddy"] = "caddy",
         },
       }
     end,
