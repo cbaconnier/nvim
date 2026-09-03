@@ -146,6 +146,29 @@ return {
       renderer = {
         full_name = true,
       },
+      on_attach = function(bufnr)
+        local api = require "nvim-tree.api"
+        api.config.mappings.default_on_attach(bufnr)
+        -- Add <C-w>s to open horizontal splits
+        vim.keymap.set(
+          "n",
+          "<C-s>",
+          api.node.open.horizontal,
+          { desc = "nvim-tree: Open: Horizontal Split", buffer = bufnr, noremap = true, silent = true, nowait = true }
+        )
+      end,
+    },
+  },
+
+  {
+    "nvim-telescope/telescope.nvim",
+    opts = {
+      defaults = {
+        mappings = {
+          i = { ["<C-s>"] = require("telescope.actions").select_horizontal },
+          n = { ["<C-s>"] = require("telescope.actions").select_horizontal },
+        },
+      },
     },
   },
 
