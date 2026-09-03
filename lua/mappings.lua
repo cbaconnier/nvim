@@ -62,6 +62,20 @@ vim.keymap.set("n", "<leader>oe", function()
   require("nvim-tree.api").tree.open { path = vim.fn.expand "~/Documents/obsidian" }
 end, { desc = "Obsidian file explorer" })
 
+-- Resize splits
+map("n", "<A-h>", function()
+  require("smart-splits").resize_left()
+end, { desc = "Resize window left" })
+map("n", "<A-j>", function()
+  require("smart-splits").resize_down()
+end, { desc = "Resize window down" })
+map("n", "<A-k>", function()
+  require("smart-splits").resize_up()
+end, { desc = "Resize window up" })
+map("n", "<A-l>", function()
+  require("smart-splits").resize_right()
+end, { desc = "Resize window right" })
+
 -- Remove default new buffer keymap
 vim.keymap.del("n", "<leader>b")
 

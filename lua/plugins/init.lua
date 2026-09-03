@@ -277,6 +277,13 @@ return {
   },
 
   {
+    "mrjones2014/smart-splits.nvim",
+    opts = {
+      default_amount = 2,
+    },
+  },
+
+  {
     "nvim-neotest/neotest",
     dependencies = {
       "nvim-neotest/nvim-nio",
