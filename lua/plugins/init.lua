@@ -12,7 +12,6 @@ return {
     dependencies = {
       "kristijanhusak/vim-dadbod-completion",
       "moyiz/blink-emoji.nvim",
-      "ricardoramirezr/blade-nav.nvim",
     },
     opts = {
       sources = {
@@ -24,18 +23,11 @@ return {
           "php_declarations",
           "dadbod",
           "emoji",
-          "blade-nav",
         },
         providers = {
           php_declarations = { module = "custom.blink-php", score_offset = 100 },
           dadbod = { module = "vim_dadbod_completion.blink" },
           emoji = { module = "blink-emoji", score_offset = -1 },
-          ["blade-nav"] = {
-            module = "blade-nav.integrations.blink",
-            opts = {
-              close_tag_on_complete = false,
-            },
-          },
         },
       },
       keymap = {

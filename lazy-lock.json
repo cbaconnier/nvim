@@ -5,7 +5,6 @@
   "NvChad": { "branch": "v2.5", "commit": "add44b952d631981614bbb8cfc6f7002f296dfe6" },
   "Recover.vim": { "branch": "master", "commit": "e61319bce3cd1004e5b695933296d8f267dd65a3" },
   "base46": { "branch": "v3.0", "commit": "267954c8663607823f03a3259bb8deb15688212f" },
-  "blade-nav.nvim": { "branch": "main", "commit": "909825e2cfa5171867f2109f7cedc5e3e5d60956" },
   "blink-emoji.nvim": { "branch": "master", "commit": "dff709139ad5389fb55ebab026e75278a12b325a" },
   "blink.cmp": { "branch": "main", "commit": "78336bc89ee5365633bcf754d93df01678b5c08f" },
   "conform.nvim": { "branch": "master", "commit": "016802de402556da54c36bd7359b441266b01cdd" },
