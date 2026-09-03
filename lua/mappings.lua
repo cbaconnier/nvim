@@ -92,6 +92,29 @@ map("n", "<leader>bo", function()
   end
 end, { desc = "Close all buffers except current" })
 
+map("n", "<leader>bd", "<cmd>bd<CR>", { desc = "Delete buffer (:bd)" })
+
+-- Close buffer and window
+map("n", "<leader>bq", function()
+  local buf = vim.api.nvim_get_current_buf()
+  local only_window_with_buf = #vim.fn.win_findbuf(buf) == 1
+  local real_wins = vim.tbl_filter(function(w)
+    local b = vim.api.nvim_win_get_buf(w)
+    return vim.api.nvim_win_get_config(w).relative == "" and vim.bo[b].filetype ~= "NvimTree"
+  end, vim.api.nvim_list_wins())
+
+  if #real_wins > 1 then
+    vim.cmd "close"
+    -- only wipe the buffer if no other window still shows it
+    if only_window_with_buf then
+      pcall(vim.api.nvim_buf_delete, buf, {})
+    end
+  else
+    -- only real window left: fall back to switching buffer, like <leader>x
+    require("nvchad.tabufline").close_buffer(buf)
+  end
+end, { desc = "Close window and buffer" })
+
 -- Open buffer and use <c-d> to close them
 local builtin = require "telescope.builtin"
 local action_state = require "telescope.actions.state"
