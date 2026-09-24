@@ -62,6 +62,25 @@ vim.keymap.set("n", "<leader>oe", function()
   require("nvim-tree.api").tree.open { path = vim.fn.expand "~/Documents/obsidian" }
 end, { desc = "Obsidian file explorer" })
 
+-- Git keymaps
+vim.keymap.del("n", "<leader>gt")
+vim.keymap.del("n", "<leader>cm")
+
+map("n", "<leader>gs", "<cmd>Telescope git_status<CR>", { desc = "Git status" })
+map("n", "<leader>gc", "<cmd>Telescope git_commits<CR>", { desc = "Git commits (history)" })
+
+map("n", "<leader>gd", function()
+  require("gitsigns").diffthis "HEAD"
+end, { desc = "Git diff current file (vs last commit)" })
+
+map("n", "<leader>gb", function()
+  require("gitsigns").blame_line { full = true }
+end, { desc = "Git blame line" })
+
+map("n", "<leader>gB", function()
+  require("gitsigns").toggle_current_line_blame()
+end, { desc = "Toggle git blame virtual text" })
+
 -- Resize splits
 map("n", "<A-h>", function()
   require("smart-splits").resize_left()
