@@ -51,42 +51,42 @@ return {
   },
 
   -- { "github/copilot.vim", lazy = false},
-  {
-    "zbirenbaum/copilot.lua",
-    lazy = false,
-    opts = {
-      panel = {
-        enabled = true,
-        auto_refresh = true,
-        keymap = {
-          -- jump_prev = "<M-k>",
-          -- jump_next = "<M-j>",
-          -- accept = "<M-l>",
-          refresh = "gr",
-          open = "<M-CR>",
-        },
-      },
-      suggestion = {
-        enabled = true,
-        auto_trigger = false,
-        hide_during_completion = true,
-        debounce = 75,
-        trigger_on_accept = true,
-        keymap = {
-          accept = "<M-l>",
-          next = "<M-k>",
-          prev = "<M-j>",
-          dismiss = "<C-h>",
-        },
-      },
-      filetypes = {
-        markdown = true, -- overrides default(disallow)
-      },
-      telemetry = {
-        telemetryLevel = "off",
-      },
-    },
-  },
+  -- {
+  --   "zbirenbaum/copilot.lua",
+  --   lazy = false,
+  --   opts = {
+  --     panel = {
+  --       enabled = true,
+  --       auto_refresh = true,
+  --       keymap = {
+  --         -- jump_prev = "<M-k>",
+  --         -- jump_next = "<M-j>",
+  --         -- accept = "<M-l>",
+  --         refresh = "gr",
+  --         open = "<M-CR>",
+  --       },
+  --     },
+  --     suggestion = {
+  --       enabled = true,
+  --       auto_trigger = false,
+  --       hide_during_completion = true,
+  --       debounce = 75,
+  --       trigger_on_accept = true,
+  --       keymap = {
+  --         accept = "<M-l>",
+  --         next = "<M-k>",
+  --         prev = "<M-j>",
+  --         dismiss = "<C-h>",
+  --       },
+  --     },
+  --     filetypes = {
+  --       markdown = true, -- overrides default(disallow)
+  --     },
+  --     telemetry = {
+  --       telemetryLevel = "off",
+  --     },
+  --   },
+  -- },
   -- { "giuxtaposition/blink-cmp-copilot" },
 
   {
