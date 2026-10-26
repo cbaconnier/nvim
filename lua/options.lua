@@ -5,6 +5,10 @@ require "nvchad.options"
 local o = vim.o
 o.cursorlineopt = "both" -- to enable cursorline!
 
+o.swapfile = false
+o.undofile = true
+o.autowriteall = true
+
 o.foldmethod = "expr"
 o.foldexpr = "v:lua.vim.treesitter.foldexpr()"
 o.foldlevel = 99
@@ -25,5 +29,15 @@ theme_watcher:start(
 vim.api.nvim_create_autocmd("VimLeavePre", {
   callback = function()
     theme_watcher:stop()
+  end,
+})
+
+vim.api.nvim_create_autocmd({ "FocusLost", "BufLeave", "InsertLeave" }, {
+  callback = function(ev)
+    if vim.bo[ev.buf].modified and vim.bo[ev.buf].buftype == "" and vim.api.nvim_buf_get_name(ev.buf) ~= "" then
+      vim.api.nvim_buf_call(ev.buf, function()
+        vim.cmd "silent! write"
+      end)
+    end
   end,
 })
