@@ -81,6 +81,19 @@ map("n", "<leader>gB", function()
   require("gitsigns").toggle_current_line_blame()
 end, { desc = "Toggle git blame virtual text" })
 
+-- Copy file name / path
+map("n", "<leader>fn", function()
+  vim.fn.setreg("+", vim.fn.expand "%:t")
+end, { desc = "Copy file name" })
+
+map("n", "<leader>fp", function()
+  vim.fn.setreg("+", vim.fn.expand "%")
+end, { desc = "Copy relative path" })
+
+map("n", "<leader>fP", function()
+  vim.fn.setreg("+", vim.fn.expand "%:p")
+end, { desc = "Copy absolute path" })
+
 -- Resize splits
 map("n", "<A-h>", function()
   require("smart-splits").resize_left()
