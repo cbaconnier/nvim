@@ -23,6 +23,7 @@ local options = {
     css = { "prettier" },
     html = { "prettier" },
     nix = { "nixfmt" },
+    qml = { "qmlformat" },
   },
 
   format_on_save = {

@@ -28,6 +28,11 @@ local servers = {
       },
     },
   },
+  qmlls = {
+    cmd = { "qmlls" },
+    filetypes = { "qml" },
+    root_markers = { ".qmlls.ini", ".git" },
+  },
   rust_analyzer = {},
   tailwindcss = {
     filetypes = { "html", "blade", "typescriptreact" },
