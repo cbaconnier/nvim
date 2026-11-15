@@ -69,6 +69,9 @@ vim.keymap.del("n", "<leader>cm")
 map("n", "<leader>gs", "<cmd>Telescope git_status<CR>", { desc = "Git status" })
 map("n", "<leader>gc", "<cmd>Telescope git_commits<CR>", { desc = "Git commits (history)" })
 
+map("n", "<leader>gh", "<cmd>Telescope git_bcommits<CR>", { desc = "Git file history (current file)" })
+map("v", "<leader>gh", "<cmd>Telescope git_bcommits_range<CR>", { desc = "Git history of selected lines" })
+
 map("n", "<leader>gd", function()
   require("gitsigns").diffthis "HEAD"
 end, { desc = "Git diff current file (vs last commit)" })
